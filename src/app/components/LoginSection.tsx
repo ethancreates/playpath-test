@@ -4,9 +4,20 @@ import ModalButton from "./ui/button";
 import { useState } from "react";
 import Modal from "./ui/modal";
 import { FaGithub } from "react-icons/fa";
+import { supabaseClient } from "../utils/supabase/client";
 
 const LoginSection = () => {
   const [showModal, setShowModal] = useState(false);
+
+  const handleGithubLogin = (provider: "github") => {
+    const supabase = supabaseClient();
+    supabase.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: location.origin + "/auth/callback?next=/dashboard",
+      },
+    });
+  };
   return (
     <div className="flex items-center justify-center min-h-screen">
       <ModalButton setShowModal={setShowModal}>Login</ModalButton>
@@ -37,7 +48,10 @@ const LoginSection = () => {
             </div>
             <div className="w-[400px] h-[0.5px] rounded bg-black/20 my-5" />
             <div className="">
-              <button className="flex items-center space-x-2 border border-black/50 w-full rounded-2xl px-1 py-2 justify-center hover:scale-105 active:scale-90 transition">
+              <button
+                onClick={() => handleGithubLogin("github")}
+                className="flex items-center space-x-2 border border-black/50 w-full rounded-2xl px-1 py-2 justify-center hover:scale-105 active:scale-90 transition"
+              >
                 <FaGithub /> <p>Continue with GitHub</p>
               </button>
             </div>
