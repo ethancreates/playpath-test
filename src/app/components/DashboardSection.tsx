@@ -3,13 +3,7 @@
 import { useRouter } from "next/navigation";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { TableData } from "../utils/types";
-import {
-  FiveStars,
-  FourStars,
-  OneStar,
-  ThreeStars,
-  TwoStars,
-} from "../utils/constant";
+
 import {
   GetNumberRatings,
   RenderRatingStars,
@@ -104,7 +98,10 @@ const DashboardSection: React.FC<DashboardSectionProps> = ({ tableData }) => {
             <tbody>
               {arrangedDetailsTableData.map(({ criteria, rating }) => {
                 return (
-                  <tr key={criteria} className="border-b border-gray-200">
+                  <tr
+                    key={criteria}
+                    className="border-b border-gray-200 h-[72px]"
+                  >
                     <td className="px-6 py-4 text-left text-sm">
                       <WithSkeleton>
                         {(isLoading) =>
