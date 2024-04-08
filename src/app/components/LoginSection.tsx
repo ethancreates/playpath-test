@@ -5,11 +5,14 @@ import { useState } from "react";
 import Modal from "./ui/modal";
 import { FaGithub } from "react-icons/fa";
 import { supabaseClient } from "../utils/supabase/client";
+import { VscLoading } from "react-icons/vsc";
 
 const LoginSection = () => {
   const [showModal, setShowModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleGithubLogin = (provider: "github") => {
+    setIsLoading(true);
     const supabase = supabaseClient();
     supabase.auth.signInWithOAuth({
       provider,
@@ -17,6 +20,7 @@ const LoginSection = () => {
         redirectTo: location.origin + "/auth/callback?next=/dashboard",
       },
     });
+    setIsLoading(false);
   };
   return (
     <div className="flex items-center justify-center min-h-screen">
@@ -52,7 +56,8 @@ const LoginSection = () => {
                 onClick={() => handleGithubLogin("github")}
                 className="flex items-center space-x-2 border border-black/50 w-full rounded-2xl px-1 py-2 justify-center hover:scale-105 active:scale-90 transition"
               >
-                <FaGithub /> <p>Continue with GitHub</p>
+                <FaGithub />
+                <p>Continue with GitHub</p>
               </button>
             </div>
             <div className="flex items-center justify center mt-5">
