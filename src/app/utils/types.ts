@@ -37,3 +37,16 @@ export type RatingOverview = {
 export type RatingProps = {
   overview: RatingOverview;
 };
+
+export type StarComponentType = {
+  [key in
+    | "five_star_ratings"
+    | "four_star_ratings"
+    | "three_star_ratings"
+    | "two_star_ratings"
+    | "one_star_ratings"]: () => JSX.Element;
+};
+
+export type WithSkeletonProps = {
+  children: (isLoading: boolean) => JSX.Element | string;
+};

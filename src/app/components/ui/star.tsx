@@ -1,14 +1,18 @@
-// components/Star.tsx
-import React from "react";
+import React, { CSSProperties } from "react";
 
 interface StarProps {
   filled: boolean;
+  className?: string;
+  animationDelay?: number;
+  style?: CSSProperties;
 }
 
-const Star: React.FC<StarProps> = ({ filled }) => {
+const Star: React.FC<StarProps> = ({ filled, className, animationDelay }) => {
   return (
     <svg
-      className={`h-6 w-6 ${filled ? "text-yellow-500" : "text-gray-300"}`}
+      className={`h-6 w-6 ${
+        filled ? "text-yellow-500" : "text-gray-300"
+      } ${className}`}
       fill="currentColor"
       viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg"
