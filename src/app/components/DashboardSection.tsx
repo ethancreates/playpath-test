@@ -100,7 +100,7 @@ const DashboardSection: React.FC<DashboardSectionProps> = ({ tableData }) => {
                 return (
                   <tr
                     key={criteria}
-                    className="border-b border-gray-200 h-[72px] flex items-center"
+                    className="border-b border-gray-200 h-[72px]"
                   >
                     <td className="px-6 py-4 text-left text-sm">
                       <WithSkeleton>
@@ -109,7 +109,7 @@ const DashboardSection: React.FC<DashboardSectionProps> = ({ tableData }) => {
                         }
                       </WithSkeleton>
                     </td>
-                    <td className="px-6 py-4 flex items-center">
+                    <td className="px-5 py-4 pt-6 flex items-center">
                       {RenderStars(rating.score)}
                     </td>
                     <td className="text-gray-700 px-6 py-4 text-left text-sm">
