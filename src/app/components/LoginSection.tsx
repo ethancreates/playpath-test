@@ -4,8 +4,7 @@ import ModalButton from "./ui/button";
 import { useState } from "react";
 import Modal from "./ui/modal";
 import { FaGithub } from "react-icons/fa";
-import { supabaseClient } from "../utils/supabase/client";
-import { VscLoading } from "react-icons/vsc";
+import { createClient } from "../utils/supabase/client";
 
 const LoginSection = () => {
   const [showModal, setShowModal] = useState(false);
@@ -13,7 +12,7 @@ const LoginSection = () => {
 
   const handleGithubLogin = (provider: "github") => {
     setIsLoading(true);
-    const supabase = supabaseClient();
+    const supabase = createClient();
     supabase.auth.signInWithOAuth({
       provider,
       options: {
